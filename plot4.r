@@ -6,12 +6,13 @@ if(!exists("load.household_power_consumption", mode = "function"))
 DF.feb <- load.household_power_consumption()
 
 # My computer has locale "Russian_Russia.1251"
-# change locale to "English_United States.1252" for days of week on English
+# change locale to "English_United States.1252" for days of week in English
 Sys.setlocale("LC_TIME", "English_United States.1252")
 
 
 #Construct the 4'th plot
-par( mfrow = c(2,2))
+png("plot4.png")  #comment to use screen device!
+par( mfrow = c(2,2)) 
 with( DF.feb, {	plot(Datetime, Global_active_power, xlab = NA, ylab = "Global Active Power", type = "l");
 		plot(Datetime, Voltage, xlab = "datetime", type = "l");
 		plot(Datetime, Sub_metering_1, xlab = NA, ylab = "Energy sub metering", type = "n");
@@ -30,6 +31,6 @@ with( DF.feb, {	plot(Datetime, Global_active_power, xlab = NA, ylab = "Global Ac
 par( mfrow = c(1,1))
 
 # Save to the file
-dev.copy( device = png, filename = "plot4.png")
+#dev.copy( device = png, filename = "plot4.png")
 dev.off()
 
